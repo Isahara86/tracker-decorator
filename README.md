@@ -19,12 +19,12 @@ myClassObj.someMethod();
 
 console.log(metrics);
 
-// { 'Index>aa':{ 
-//          counter: 75, 
-//          minTime: 53, 
-//          avgTime: 112, 
-//          maxTime: 232 
-//                } 
+// { 'MyClass>someMethod':  { 
+//                       counter: 75, 
+//                       minTime: 53, 
+//                       avgTime: 112, 
+//                       maxTime: 232 
+//                      } 
 //  }
 ```
 
