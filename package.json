@@ -1,6 +1,6 @@
 {
-  "name": "0062_tracker-decorators-lib",
-  "version": "1.0.0",
+  "name": "tracker-decorator",
+  "version": "0.1.0",
   "description": "A collection of useful decorators",
   "main": "index.js",
   "scripts": {
