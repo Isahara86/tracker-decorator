@@ -1,0 +1,17 @@
+{
+  "name": "0062_tracker-decorators-lib",
+  "version": "1.0.0",
+  "description": "A collection of useful decorators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "isahara86@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}
