@@ -8,7 +8,7 @@ import { TimeTracker, metrics } from 'tracker-decorator/dist';
 
 class MyClass {
     @TimeTracker()
-    someMethod() {
+    method() {
         ...
     }
 }
@@ -19,12 +19,12 @@ myClassObj.someMethod();
 
 console.log(metrics);
 
-// { 'MyClass>someMethod':  { 
-//                       counter: 75, 
-//                       minTime: 53, 
-//                       avgTime: 112, 
-//                       maxTime: 232 
-//                      } 
+// { 'MyClass>method':{ 
+//                  counter: 75, 
+//                  minTime: 53, 
+//                  avgTime: 112, 
+//                  maxTime: 232 
+//               } 
 //  }
 ```
 
