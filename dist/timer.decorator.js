@@ -5,9 +5,9 @@ const timer_callback_1 = require("./timer-callback");
 function TimeTracker() {
     return (target, propertyKey, descriptor) => {
         const origMethod = descriptor.value;
+        const timerName = target.constructor.name + '>' + propertyKey.toString();
         descriptor.value = function (...args) {
             const start = Date.now();
-            const timerName = this.constructor.name + '>' + propertyKey.toString();
             const result = origMethod.apply(this, args);
             if (result instanceof Promise) {
                 return result

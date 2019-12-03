@@ -8,10 +8,11 @@ export function TimeTracker(): MethodDecorator {
     return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor => {
         const origMethod = descriptor.value;
 
+        const timerName = target.constructor.name + '>' + propertyKey.toString();
+
         descriptor.value = function (...args: any[]): any {
 
             const start = Date.now();
-            const timerName = this.constructor.name + '>' + propertyKey.toString();
 
             const result = origMethod.apply(this, args);
             if (result instanceof Promise) {
