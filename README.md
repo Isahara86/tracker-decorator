@@ -15,7 +15,7 @@ class MyClass {
 
 const myClassObj = new MyClass();
 
-myClassObj.someMethod();
+myClassObj.method();
 
 console.log(metrics);
 
