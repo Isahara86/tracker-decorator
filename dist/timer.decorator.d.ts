@@ -1,2 +1,3 @@
 import 'reflect-metadata';
-export declare function TimeTracker(): MethodDecorator;
+import { TimerDecoratorOptions } from './interfaces/timer-decorator-options.interface';
+export declare function TimeTracker(options?: TimerDecoratorOptions): MethodDecorator;

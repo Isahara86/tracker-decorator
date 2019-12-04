@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const timer_callback_1 = require("./timer-callback");
-function TimeTracker() {
+function TimeTracker(options) {
     return (target, propertyKey, descriptor) => {
+        var _a;
         const origMethod = descriptor.value;
-        const timerName = target.constructor.name + '>' + propertyKey.toString();
+        const timerName = ((_a = options) === null || _a === void 0 ? void 0 : _a.name) || target.constructor.name + '>' + propertyKey.toString();
         descriptor.value = function (...args) {
             const start = Date.now();
             const result = origMethod.apply(this, args);

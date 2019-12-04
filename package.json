@@ -4,6 +4,7 @@
   "description": "A collection of useful decorators",
   "main": "dist/index.js",
   "scripts": {
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "isahara86@gmail.com",
