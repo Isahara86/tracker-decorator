@@ -1,4 +1,34 @@
+### Agenda
+
 A very simple decorator for metrics gathering.
+
+Metrics are vital for any high load project and there are many ways to implement metrics
+
+You can always do it like that:
+
+// ANTI PATTERN
+```typescript
+ function myFunc() {
+        const start = Date.now();
+ 
+        ... your logic ...
+        
+        metrics.add('metric name', Date.now() - start); 
+    }
+
+```
+
+Byt there is a cleaner way:
+
+```typescript
+
+    @TimeTracker()
+    function myFunc() {
+         ... your logic ...
+    }
+}
+```
+
 
 
 ### Example
