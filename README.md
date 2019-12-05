@@ -67,3 +67,9 @@ setTimerCallback((name, time)=>{
     console.log(name, time);
 });
 ```
+
+Specify custom metric name 
+
+```typescript
+@TimeTracker({name: 'my-metric'})
+```
