@@ -38,7 +38,7 @@ import { TimeTracker, metrics } from 'tracker-decorator/dist';
 
 class MyClass {
     @TimeTracker()
-    method() {
+    method() { // if the method retuns a Promise it will work any way
         ...
     }
 }
