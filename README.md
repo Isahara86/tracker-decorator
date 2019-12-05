@@ -6,8 +6,9 @@ Metrics are vital for any high load project and there are many ways to implement
 
 You can always do it like that:
 
-// ANTI PATTERN
+
 ```typescript
+//-------- ANTI PATTERN --------//
  function myFunc() {
         const start = Date.now();
  
