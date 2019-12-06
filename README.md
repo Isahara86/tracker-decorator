@@ -1,4 +1,4 @@
-### Agenda
+## Agenda
 
 A very simple decorator for metrics gathering.
 
@@ -30,9 +30,14 @@ Byt there is a cleaner way:
 }
 ```
 
+## Description
+- [Example](#example)
+- [Supported features](#supported-features)
+    - [Custom metrics callback](#custom-tracker-callback)
+    - [Specify custom metric name](#custom-metric-name)
 
-
-### Example
+<a name="example"></a>
+## Example
 
 ```typescript
 import { TimeTracker, metrics } from 'tracker-decorator/dist';
@@ -57,9 +62,15 @@ console.log(metrics);
 //                  maxTime: 232 
 //               } 
 //  }
-```
 
-Set custom tracker callback
+
+```
+<a name="supported-features"></a>
+## Supported features
+
+
+<a name="custom-tracker-callback"></a>
+### Set custom metrics callback
 ```typescript
 import { setTimerCallback } from 'tracker-decorator/dist';
 
@@ -67,8 +78,8 @@ setTimerCallback((name, time)=>{
     console.log(name, time);
 });
 ```
-
-Specify custom metric name 
+<a name="custom-metric-name"></a>
+### Specify custom metric name 
 
 ```typescript
 @TimeTracker({name: 'my-metric'})
