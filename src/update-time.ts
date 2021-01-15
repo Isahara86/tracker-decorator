@@ -1,6 +1,6 @@
 export const metrics: any = {};
 
-export function updateTime(name: string, time: number): void {
+export function updateTime(name: string, time: number, dataIn: any, dataOut: any): void {
     if (!metrics[name]) {
         metrics[name] = {
             counter: 0,

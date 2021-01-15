@@ -13,12 +13,12 @@ function TimeTracker(options) {
             if (result instanceof Promise) {
                 return result
                     .then(data => {
-                    timer_callback_1.timerCallback(timerName, Date.now() - start);
+                    timer_callback_1.timerCallback(timerName, Date.now() - start, args, data);
                     return data;
                 });
             }
             else {
-                timer_callback_1.timerCallback(timerName, Date.now() - start);
+                timer_callback_1.timerCallback(timerName, Date.now() - start, args, result);
                 return result;
             }
         };

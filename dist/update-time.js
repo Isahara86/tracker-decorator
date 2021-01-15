@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.metrics = {};
-function updateTime(name, time) {
+function updateTime(name, time, dataIn, dataOut) {
     if (!exports.metrics[name]) {
         exports.metrics[name] = {
             counter: 0,
