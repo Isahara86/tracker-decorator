@@ -18,12 +18,12 @@ export function TimeTracker(options?: TimerDecoratorOptions): MethodDecorator {
             if (result instanceof Promise) {
                 return result
                     .then(data => {
-                        timerCallback(timerName, Date.now() - start);
+                        timerCallback(timerName, Date.now() - start, args, data);
                         return data;
                     });
 
             } else {
-                timerCallback(timerName, Date.now() - start);
+                timerCallback(timerName, Date.now() - start, args, result);
                 return result;
             }
 
