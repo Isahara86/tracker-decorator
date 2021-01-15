@@ -13,12 +13,12 @@ function TimeTracker(options) {
             if (result instanceof Promise) {
                 return result
                     .then(data => {
-                    timer_callback_1.timerCallback(timerName, Date.now() - start, args, data);
+                    track(timer_callback_1.timerCallback, timerName, Date.now() - start, args, data);
                     return data;
                 });
             }
             else {
-                timer_callback_1.timerCallback(timerName, Date.now() - start, args, result);
+                track(timer_callback_1.timerCallback, timerName, Date.now() - start, args, result);
                 return result;
             }
         };
@@ -28,6 +28,14 @@ function TimeTracker(options) {
     };
 }
 exports.TimeTracker = TimeTracker;
+function track(cb, ...args) {
+    try {
+        cb(...args);
+    }
+    catch (e) {
+        console.error('tracker callback error', e);
+    }
+}
 function copyMethodMetadata(src, target) {
     const metadataKeys = Reflect.getOwnMetadataKeys(src);
     for (let i = 0; i < metadataKeys.length; i++) {
