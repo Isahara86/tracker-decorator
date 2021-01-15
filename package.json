@@ -1,7 +1,7 @@
 {
-  "name": "tracker-decorator",
+  "name": "@isahara/tracker-decorator",
   "version": "0.3.1",
-  "description": "A collection of useful decorators",
+  "description": "Tracker decorator",
   "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
@@ -11,6 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^3.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isahara86/tracker-decorator.git"
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13"

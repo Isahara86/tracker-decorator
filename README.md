@@ -74,8 +74,8 @@ console.log(metrics);
 ```typescript
 import { setTimerCallback } from 'tracker-decorator/dist';
 
-setTimerCallback((name, time)=>{
-    console.log(name, time);
+setTimerCallback((name, time, dataIn, dataOut)=>{
+    console.log(name, time, dataIn, dataOut);
 });
 ```
 <a name="custom-metric-name"></a>
