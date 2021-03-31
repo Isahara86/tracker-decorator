@@ -31,16 +31,24 @@ Byt there is a cleaner way:
 ```
 
 ## Description
+- [Installation](#installation)
 - [Example](#example)
 - [Supported features](#supported-features)
     - [Custom metrics callback](#custom-tracker-callback)
     - [Specify custom metric name](#custom-metric-name)
 
+<a name="installation"></a>
+## Installation
+```npm
+npm install @isahara/tracker-decorator
+```
+
+
 <a name="example"></a>
 ## Example
 
 ```typescript
-import { Tracker, metrics } from 'tracker-decorator/dist';
+import { Tracker, metrics } from '@isahara/tracker-decorator';
 
 class MyClass {
     @Tracker()
@@ -72,7 +80,7 @@ console.log(metrics);
 <a name="custom-tracker-callback"></a>
 ### Set custom metrics callback
 ```typescript
-import { setTrackerCallback } from 'tracker-decorator/dist';
+import { setTrackerCallback } from '@isahara/tracker-decorator';
 
 setTrackerCallback((name, time, dataIn, dataOut)=>{
     console.log(name, time, dataIn, dataOut);

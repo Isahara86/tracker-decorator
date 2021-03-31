@@ -3,6 +3,6 @@ import { updateTime } from './update-time';
 
 export let trackerCallback: TrackerCallbackInterface = updateTime;
 
-export function setTimerCallback(cb: TrackerCallbackInterface) {
+export function setTrackerCallback(cb: TrackerCallbackInterface) {
     trackerCallback = cb;
 }
