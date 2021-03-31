@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
-const timer_callback_1 = require("./timer-callback");
-function TimeTracker(options) {
+const tracker_callback_1 = require("./tracker-callback");
+function Tracker(options) {
     return (target, propertyKey, descriptor) => {
         var _a;
         const origMethod = descriptor.value;
@@ -13,12 +13,12 @@ function TimeTracker(options) {
             if (result instanceof Promise) {
                 return result
                     .then(data => {
-                    track(timer_callback_1.timerCallback, timerName, Date.now() - start, args, data);
+                    track(tracker_callback_1.trackerCallback, timerName, Date.now() - start, args, data);
                     return data;
                 });
             }
             else {
-                track(timer_callback_1.timerCallback, timerName, Date.now() - start, args, result);
+                track(tracker_callback_1.trackerCallback, timerName, Date.now() - start, args, result);
                 return result;
             }
         };
@@ -27,7 +27,7 @@ function TimeTracker(options) {
         return descriptor;
     };
 }
-exports.TimeTracker = TimeTracker;
+exports.Tracker = Tracker;
 function track(cb, ...args) {
     try {
         cb(...args);

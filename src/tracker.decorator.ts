@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import {timerCallback} from './timer-callback';
-import {TimerDecoratorOptions} from './interfaces/timer-decorator-options.interface';
+import {trackerCallback} from './tracker-callback';
+import {TrackerDecoratorOptions} from './interfaces/tracker-decorator-options.interface';
 
 // TODO check precisely if it works for all cases. Before "copyMetadata()" it broke some logic like @Get @Pose @swagger-ui
-export function TimeTracker(options?: TimerDecoratorOptions): MethodDecorator {
+export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
 
     return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor => {
         const origMethod = descriptor.value;
@@ -17,12 +17,12 @@ export function TimeTracker(options?: TimerDecoratorOptions): MethodDecorator {
             if (result instanceof Promise) {
                 return result
                     .then(data => {
-                        track(timerCallback, timerName, Date.now() - start, args, data);
+                        track(trackerCallback, timerName, Date.now() - start, args, data);
                         return data;
                     });
 
             } else {
-                track(timerCallback, timerName, Date.now() - start, args, result);
+                track(trackerCallback, timerName, Date.now() - start, args, result);
                 return result;
             }
 

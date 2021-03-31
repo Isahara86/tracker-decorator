@@ -23,7 +23,7 @@ Byt there is a cleaner way:
 
 ```typescript
 
-    @TimeTracker()
+    @Tracker()
     function myFunc() {
          ... your logic ...
     }
@@ -40,10 +40,10 @@ Byt there is a cleaner way:
 ## Example
 
 ```typescript
-import { TimeTracker, metrics } from 'tracker-decorator/dist';
+import { Tracker, metrics } from 'tracker-decorator/dist';
 
 class MyClass {
-    @TimeTracker()
+    @Tracker()
     method() { // if the method retuns a Promise it will work any way
         ...
     }
@@ -72,15 +72,18 @@ console.log(metrics);
 <a name="custom-tracker-callback"></a>
 ### Set custom metrics callback
 ```typescript
-import { setTimerCallback } from 'tracker-decorator/dist';
+import { setTrackerCallback } from 'tracker-decorator/dist';
 
-setTimerCallback((name, time, dataIn, dataOut)=>{
+setTrackerCallback((name, time, dataIn, dataOut)=>{
     console.log(name, time, dataIn, dataOut);
 });
 ```
 <a name="custom-metric-name"></a>
 ### Specify custom metric name 
 
+By default metric name is '[ClassName] + [MethodName]'
+When you need to override default you can add custom name.
+
 ```typescript
-@TimeTracker({name: 'my-metric'})
+@Tracker({name: 'my-metric'})
 ```
