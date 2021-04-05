@@ -17,6 +17,7 @@
     "url": "git+https://github.com/Isahara86/tracker-decorator.git"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.7"
   }
 }

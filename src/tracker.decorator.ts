@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import {trackerCallback} from './tracker-callback';
 import {TrackerDecoratorOptions} from './interfaces/tracker-decorator-options.interface';
+import {instanceHandlerStorage} from "./handler-storage";
+import {TrackerResultHandlerInterface} from "./interfaces/tracker-result-handler.interface";
 
 // TODO check precisely if it works for all cases. Before "copyMetadata()" it broke some logic like @Get @Pose @swagger-ui
 export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
@@ -9,17 +11,25 @@ export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
         const origMethod = descriptor.value;
         const timerName = options?.name || target.constructor.name + '>' + propertyKey.toString();
 
-        descriptor.value = function (...args: any[]): any {
+        descriptor.value = function (...args: any[]): unknown {
 
             const start = Date.now();
 
-            const result = origMethod.apply(this, args);
+            let result = origMethod.apply(this, args);
+            result = processResultWithCustomHandler(args, result, timerName);
+
             if (result instanceof Promise) {
                 return result
-                    .then(data => {
-                        track(trackerCallback, timerName, Date.now() - start, args, data);
-                        return data;
-                    });
+                    .then(
+                        data => {
+                            track(trackerCallback, timerName, Date.now() - start, args, data);
+                            return data;
+                        },
+                        err => {
+                            track(trackerCallback, timerName, Date.now() - start, args, err);
+                            return Promise.reject(err);
+                        }
+                    );
 
             } else {
                 track(trackerCallback, timerName, Date.now() - start, args, result);
@@ -36,6 +46,17 @@ export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
 
     };
 
+}
+
+function processResultWithCustomHandler(dataIn: unknown, result: unknown, timerName: string): unknown {
+    const handler: TrackerResultHandlerInterface | undefined = instanceHandlerStorage
+        .find(h => (result instanceof h.instance))?.handler;
+
+    if (handler) {
+        return handler(dataIn, result, timerName);
+    }
+
+    return result
 }
 
 function track(cb: Function, ...args: any[]): void {

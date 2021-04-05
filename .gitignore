@@ -7,3 +7,4 @@
 *.iml
 node_modules
 .npmrc
+my-test.js
