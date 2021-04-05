@@ -4,7 +4,7 @@ import {InstanceHandlerInterface} from "../interfaces/instance-handler.interface
 
 export const subscriptionHandler: InstanceHandlerInterface = {
     instance: Subscription,
-    handler: (dataIn: any, result: Subscription, timerName: string) => {
-        return new Promise(resolve => result.add(resolve))
+    handler: (result: Subscription, cb) => {
+        return result.add(cb);
     }
 };

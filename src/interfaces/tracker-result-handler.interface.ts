@@ -1,3 +1,3 @@
 export interface TrackerResultHandlerInterface {
-    (dataIn: any, result: any, timerName: string): Promise<unknown> | unknown;
+    (result: any, cb: (result: unknown) => void): Promise<unknown> | unknown;
 }

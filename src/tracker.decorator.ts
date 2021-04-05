@@ -16,9 +16,14 @@ export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
             const start = Date.now();
 
             let result = origMethod.apply(this, args);
-            result = processResultWithCustomHandler(args, result, timerName);
+            const customHandler = getResultHandler(result);
 
-            if (result instanceof Promise) {
+            if (customHandler) {
+                return customHandler(
+                    result,
+                    resp => track(trackerCallback, timerName, Date.now() - start, args, resp),
+                );
+            } else if (result instanceof Promise) {
                 return result
                     .then(
                         data => {
@@ -48,15 +53,9 @@ export function Tracker(options?: TrackerDecoratorOptions): MethodDecorator {
 
 }
 
-function processResultWithCustomHandler(dataIn: unknown, result: unknown, timerName: string): unknown {
-    const handler: TrackerResultHandlerInterface | undefined = instanceHandlerStorage
+function getResultHandler(result: unknown): TrackerResultHandlerInterface | undefined {
+    return instanceHandlerStorage
         .find(h => (result instanceof h.instance))?.handler;
-
-    if (handler) {
-        return handler(dataIn, result, timerName);
-    }
-
-    return result
 }
 
 function track(cb: Function, ...args: any[]): void {

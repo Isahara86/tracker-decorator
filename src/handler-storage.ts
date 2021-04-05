@@ -8,3 +8,6 @@ export const instanceHandlerStorage: InstanceHandlerInterface[] = [];
 //     handler: TrackerResultHandlerInterface,
 // }> = [];
 
+export const addResultHandler = (handler: InstanceHandlerInterface): void => {
+    instanceHandlerStorage.push(handler);
+}
