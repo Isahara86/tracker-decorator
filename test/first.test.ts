@@ -4,17 +4,18 @@ import {observableHandler, subscriptionHandler} from "../src/plugins";
 import {Tracker, setTrackerCallback} from "../src";
 
 test('Observable handler test', (done) => {
+    addResultHandler(observableHandler);
+
+    const trackerCallback = jest.fn();
+    setTrackerCallback(trackerCallback);
+
+
     class TestClass {
         @Tracker()
         getObservable() {
             return of(1, 2, 3);
         }
     }
-
-    addResultHandler(observableHandler);
-
-    const trackerCallback = jest.fn();
-    setTrackerCallback(trackerCallback);
 
     const testObj = new TestClass();
 
@@ -30,6 +31,10 @@ test('Observable handler test', (done) => {
 });
 
 test('Subscription handler test', (done) => {
+    addResultHandler(subscriptionHandler);
+
+    const trackerCallback = jest.fn();
+    setTrackerCallback(trackerCallback);
 
     class TestClass {
         @Tracker()
@@ -38,11 +43,6 @@ test('Subscription handler test', (done) => {
             });
         }
     }
-
-    addResultHandler(subscriptionHandler);
-
-    const trackerCallback = jest.fn();
-    setTrackerCallback(trackerCallback);
 
     const testObj = new TestClass();
 
